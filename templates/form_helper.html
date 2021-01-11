@@ -1,7 +1,7 @@
 {% macro displayField(fieldName, placeholderValue) %}
 
 <div>
-  {{ fieldName(class_='form-contorl', placeholder=placeholderValue, **kwargs )}}
+  {{ fieldName(class_='form-contorl', placeholder=placeholderValue, **kwargs) }}
   <ul>
     {% for error in fieldName.errors %}
     <li>{{ error }}</li>
