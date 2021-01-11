@@ -4,13 +4,14 @@ from wtform_fields import *
 from models import *
 from flask_socketio import SocketIO, send, emit, join_room, leave_room
 from time import localtime, strftime
+import os
 
 # Configure app
 app = Flask(__name__)
-app.secret_key = 'my key'
+app.secret_key = os.environ.get('SECRET')
 
 # Configure database
-app.config['SQLALCHEMY_DATABASE_URI']='postgres://shsklsgbuuqmxe:9771ea1cb9a8ce516946709d8a3d1d3ff0fed6ed2af29d40f839b552cb22f78a@ec2-50-19-32-202.compute-1.amazonaws.com:5432/d3ddp9t4foo8th'
+app.config['SQLALCHEMY_DATABASE_URI']=os.environ.get('DATABASE_URL')
 db = SQLAlchemy(app)
 
 # Initialize Flask-SocketIO
@@ -94,4 +95,5 @@ def leave(data):
 
 
 if __name__ == "__main__":
-    socketio.run(app, debug=True)
+    # socketio.run(app, debug=True)
+    app.run()
